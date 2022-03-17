@@ -3,6 +3,7 @@ from flask import Flask, request
 from idna import valid_contextj
 from spartan import Spartan
 from os.path import exists
+import os
 
 ### Adds employee to Json database ###
 def add_employee():
@@ -32,6 +33,10 @@ def add_employee():
 
 
     ### Validation of User input ###
+    validation_ID = Spartan.ID_validation(employee_id)
+    if validation_ID != "v":
+        return "Failed ID Validation - Must contain an integer"
+
     validation_first_name = Spartan.first_last_name_validation(First_name)
     if validation_first_name != "v":
         return "Failed First Name Validation - Must contain minimum of 2 characters"
@@ -90,6 +95,14 @@ def add_employee():
 
 #### Shows specifc Spartan Data ###
 def show_spartan(spartan_id):
+
+    with open("spartan_data.json", "a+") as sparta_json:
+        sparta_json.seek(0)
+        one_char = sparta_json.read(1)
+        if not one_char:
+            return "There is currently no Employee Data"
+            
+
     spartan_id_str = str(spartan_id)
     try:
         with open("spartan_data.json", "r+") as sparta_json:
@@ -107,6 +120,12 @@ def show_spartan(spartan_id):
 
 ### Removes data entry at selected ID ###
 def remove_employee(sparta_id_str):
+
+    with open("spartan_data.json", "a+") as sparta_json:
+        sparta_json.seek(0)
+        one_char = sparta_json.read(1)
+        if not one_char:
+            return "There is currently no Employee Data"
 
     try:
         with open("spartan_data.json", "r+") as sparta_json:
@@ -129,6 +148,12 @@ def remove_employee(sparta_id_str):
 
 ### Shows all Spartan Data ###
 def show_spartan_list_json():
+    with open("spartan_data.json", "a+") as sparta_json:
+        sparta_json.seek(0)
+        one_char = sparta_json.read(1)
+        if not one_char or one_char == "{":
+            return "There is currently no Employee Data"
+        
     try:
         with open("spartan_data.json", "r+") as sparta_json:
             data_dict = json.load(sparta_json)
