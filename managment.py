@@ -2,10 +2,22 @@ import json
 from flask import Flask, request
 from idna import valid_contextj
 from spartan import Spartan
+from os.path import exists
 
-
+### Adds employee to Json database ###
 def add_employee():
     employee_data_as_dict_for_json = {}
+
+      
+    ### Creates file is not already made ###
+    json_dict = json.dumps(employee_data_as_dict_for_json)
+    
+    with open("spartan_data.json", "a+") as sparta_json:
+        sparta_json.seek(0)
+        one_char = sparta_json.read(1)
+        if not one_char:
+            sparta_json.write(json_dict)
+
 
     ### Reading in User input (POST)
     employee_data = request.json
@@ -76,8 +88,7 @@ def add_employee():
         return f"There was an error: {ex}"
 
 
-
-#### Functional and tested within main ###
+#### Shows specifc Spartan Data ###
 def show_spartan(spartan_id):
     spartan_id_str = str(spartan_id)
     try:
@@ -94,6 +105,7 @@ def show_spartan(spartan_id):
         return f"There was an error: {ex}"
 
 
+### Removes data entry at selected ID ###
 def remove_employee(sparta_id_str):
 
     try:
@@ -115,6 +127,7 @@ def remove_employee(sparta_id_str):
         return f"There was an error: {ex}"
 
 
+### Shows all Spartan Data ###
 def show_spartan_list_json():
     try:
         with open("spartan_data.json", "r+") as sparta_json:
