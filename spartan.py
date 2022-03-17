@@ -36,7 +36,6 @@ class Spartan:
         return self.stream
     
 
-
     ###SETTER CLASS FUNCTIONS###
     def spartan_id_setter():
         while True:
@@ -101,7 +100,6 @@ class Spartan:
             if checked == "v":
                 return stream
         
-
 
 #### validation functions #####
     def stream_course_validation(text):
