@@ -184,5 +184,4 @@ if __name__ == "__main__":
 
     worker = Spartan(spt_id, f_name, l_name, year, month, day, course, stream)
 
-
     print(worker.__dict__)
