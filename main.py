@@ -19,7 +19,7 @@ def home_page():
     <p>The User can interact with the application by directly copying and pasting the url link for any of the <b style='color: blue'>GET</b> routes below:</p>
     <p>---route: /spartan/<spartan_id>     | This route will allow the User to see the data of a spartan employee with the input employee ID </p>
     <p>---route: /spartan     | This route will allow the User to see the entire spartan employee database</p>
-    <p>The User can also manipulate the database itself using the <b style='color: red'>POST</b> routes below:</p>
+    <p>The User can also manipulate the database itself using the <b style='color: red'>POST</b> routes below (Using an application like POSTMAN):</p>
     <p>---route: /spartan/add     | This route allows the user to add an employee provided they pass the input validation</p>
     <p>---route: /spartan/remove?id=sparta_id     | This route allows the user to remove an employee from the database with the employee ID</p>
     </center>
