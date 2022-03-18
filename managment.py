@@ -100,7 +100,11 @@ def show_spartan(spartan_id):
         sparta_json.seek(0)
         one_char = sparta_json.read(1)
         if not one_char:
-            return "There is currently no Employee Data"
+            return "There is currently no Employee Data present"
+
+        two_char = sparta_json.read(2)
+        if "}" in two_char:
+            return "There is currently no Employee Data present"
             
 
     spartan_id_str = str(spartan_id)
@@ -125,7 +129,11 @@ def remove_employee(sparta_id_str):
         sparta_json.seek(0)
         one_char = sparta_json.read(1)
         if not one_char:
-            return "There is currently no Employee Data"
+            return "There is currently no Employee Data present"
+
+        two_char = sparta_json.read(2)
+        if "}" in two_char:
+            return "There is currently no Employee Data present"
 
     try:
         with open("spartan_data.json", "r+") as sparta_json:
@@ -151,8 +159,13 @@ def show_spartan_list_json():
     with open("spartan_data.json", "a+") as sparta_json:
         sparta_json.seek(0)
         one_char = sparta_json.read(1)
-        if not one_char or one_char == "{":
-            return "There is currently no Employee Data"
+        if not one_char:
+            return "There is currently no Employee Data present"
+
+        two_char = sparta_json.read(2)
+        if "}" in two_char:
+            return "There is currently no Employee Data present"
+
         
     try:
         with open("spartan_data.json", "r+") as sparta_json:
